@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weheliye Finance Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-container" class="center-box">
+        <div class="card login-card">
+            <h2>please Login 🔐</h2>
+            <form id="login-form">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit" class="primary-btn">Login</button>
+                <p class="note"></p>
+                <p id="login-message" class="error-text"></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="dashboard-container" class="hidden">
+        <aside id="sidebar">
+            <h1 class="logo">List Finance</h1>
+            <nav>
+                <a href="#" data-view="home" class="active">🏠 Dashboard</a>
+                <a href="#" data-view="deposit">💰 Deposit</a>
+                <a href="#" data-view="withdrawal">💸 Withdrawal</a>
+                <a href="#" data-view="transfer">🔁 Transfer Funds</a>
+                <a href="#" data-view="paybills">🧾 Pay Bills & Services</a>
+                <a href="#" data-view="orders">📦 Order Management</a>
+                <a href="#" data-view="history">📜 Transaction History</a>
+                <button id="logout-btn" class="logout-btn">Logout</button>
+            </nav>
+        </aside>
+
+        <main id="main-content">
+            <div id="content-views">
+
+                <div id="home-view" class="content-view active">
+                    <header>WELCOME TO ABDIJIBAR FINANCIAL </header>
+                    <div class="balance-card card">
+                        <h3>Current Balance 🏦</h3>
+                        <p class="balance-amount" id="current-balance">$5,000.00</p>
+                    </div>
+                    <div class="services-grid">
+                        <div class="quick-action card" data-view="deposit">Deposit</div>
+                        <div class="quick-action card" data-view="withdrawal">Withdrawal</div>
+                        <div class="quick-action card" data-view="transfer">Transfer</div>
+                        <div class="quick-action card" data-view="paybills">Pay Bills</div>
+                    </div>
+                </div>
+
+                <div id="deposit-view" class="content-view hidden">
+                    <header>💰 Deposit Funds</header>
+                    <div class="card form-card">
+                        <p class="note">.</p>
+                        <input type="number" id="deposit-amount" placeholder="Enter Amount to Deposit" min="1" required>
+                        <button id="deposit-preview-btn" class="primary-btn">Preview Deposit</button>
+                        <div id="deposit-preview-area" class="preview-area hidden">
+                            <p>You are about to deposit: <span id="deposit-preview-amount" class="highlight-text"></span></p>
+                            <button id="deposit-confirm-btn" class="success-btn">Confirm Deposit</button>
+                            <button id="deposit-cancel-btn" class="cancel-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="withdrawal-view" class="content-view hidden">
+                    <header>💸 Withdrawal Funds</header>
+                    <div class="card form-card">
+                        <p class="note"></p>
+                        <input type="number" id="withdrawal-amount" placeholder="Enter Amount to Withdraw" min="1" required>
+                        <button id="withdrawal-preview-btn" class="primary-btn">Preview Withdrawal</button>
+                        <div id="withdrawal-preview-area" class="preview-area hidden">
+                            <p>You are about to withdraw: <span id="withdrawal-preview-amount" class="highlight-text"></span></p>
+                            <button id="withdrawal-confirm-btn" class="success-btn">Confirm Withdrawal</button>
+                            <button id="withdrawal-cancel-btn" class="cancel-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="transfer-view" class="content-view hidden">
+                    <header>🔁 Transfer Funds</header>
+                    <div class="card form-card">
+                        <input type="text" id="recipient-account" placeholder="Recipient Account Number/ID" required>
+                        <input type="number" id="transfer-amount" placeholder="Amount to Transfer" min="1" required>
+                        <textarea id="transfer-note" placeholder="Note (Optional)"></textarea>
+                        <button id="transfer-btn" class="primary-btn">Execute Transfer</button>
+                        <p id="transfer-message" class="info-text"></p>
+                    </div>
+                </div>
+
+                <div id="paybills-view" class="content-view hidden">
+                    <header>🧾 Pay Bills & Services</header>
+                    <div class="card form-card">
+                        <select id="bill-service" required>
+                            <option value="">-- Select Bill/Service --</option>
+                            <option value="Electricity">Electricity Company</option>
+                            <option value="Water">Water Utility</option>
+                            <option value="Internet">Internet/TV Provider</option>
+                            <option value="Loan">Loan Payment</option>
+                        </select>
+                        <input type="text" id="account-number" placeholder="Biller Account/Reference Number" required>
+                        <input type="number" id="bill-amount" placeholder="Amount Due" min="1" required>
+                        <button id="paybill-btn" class="primary-btn">Confirm Payment</button>
+                        <p id="paybill-message" class="info-text"></p>
+                    </div>
+                </div>
+
+                <div id="orders-view" class="content-view hidden">
+                    <header>📦 Order Management</header>
+                    <div class="card">
+                        <h3>Your Active Orders</h3>
+                        <ul id="active-orders-list" class="order-list">
+                            <li class="order-item">#ORD001 - Status: **Processing** (Item: Laptop)</li>
+                            <li class="order-item">#ORD002 - Status: **Shipped** (Item: Book)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card form-card new-order-card">
+                        <h3>Place a New Order 🛒</h3>
+                        <input type="text" id="new-order-item" placeholder="Item Name/Description" required>
+                        <input type="number" id="new-order-quantity" placeholder="Quantity" min="1" required>
+                        <button id="place-order-btn" class="success-btn">Place New Order</button>
+                        <p id="order-message" class="info-text"></p>
+                    </div>
+                </div>
+
+                <div id="history-view" class="content-view hidden">
+                    <header>📜 Transaction History</header>
+                    <div class="card history-card">
+                        <table id="transaction-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                 <th><time datetime=""></time></th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
